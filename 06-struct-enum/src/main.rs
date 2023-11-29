@@ -88,14 +88,37 @@ fn play_with_city_traits(){
 
 fn play_with_vec_cities(){
     println!("**** play with vector of cities ****");
-    let mut cities = vec![
-        City::from("Toulouse"),
-        City::from("Pau"),
+    let mut cities: Vec<City> = vec![
+        City::new(String::from("Toulouse"), 470000, 50),
+        City::new(String::from("Pau"), 77000, 50),
         City::new(String::from("Bagnères de Luchon"), 2300, 30)
     ];
     println!("{cities:?}");
     cities.push(City::from("Bordeaux"));
     println!("{cities:?}");
+    for city in cities.iter() {
+        println!("\t- {city} ; {}", city.name)
+    }
+    for city in cities.iter_mut() {
+        // city.change_population_delta(10); // legal call
+        *city += 10; // explicit dereferencement
+    }
+    println!("{cities:?}");
+    let cities_filtered: Vec<&City> = cities.iter()
+        .filter(|city| city.population > 10)
+        .collect();
+    println!("{cities_filtered:?}");
+    cities.iter()
+        .filter(|city| city.population > 10)
+        .map(|city| city.population)
+        .for_each(|pop| println!("\t- population = {pop}"));
+
+    let total_population: u64 = cities.iter()
+        .filter(|city| city.population > 10)
+        .map(|city| city.population)
+        .sum();
+    println!("Total population: {total_population}");
+
     println!()
 }
 

@@ -1,4 +1,4 @@
-## Compilation
+## Compilation avec rustc
 
 ```
 rustc basics.rs
