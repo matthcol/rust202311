@@ -1,43 +1,4 @@
-mod trafficlight;
-mod sign;
-mod city;
-mod demo_collections;
-
-#[cfg(test)]
-mod test_equals;
-
-#[cfg(test)]
-mod test_order;
-
-use city::*;
-use demo_collections::{play_with_linked_list, play_with_btreeset, play_with_cities_index};
-use sign::*;
-// use trafficlight::TrafficLight;
-// use trafficlight::{TrafficLight, inspect_traffic_light};
-use trafficlight::*;
-
-fn play_with_traffic_light(){
-    let light = TrafficLight::Green;
-    println!("{light:?}");
-    println!();
-    inspect_traffic_light(TrafficLight::Green);
-    inspect_traffic_light(TrafficLight::Orange);
-    inspect_traffic_light(TrafficLight::Red);
-}
-
-fn play_with_signs(){
-    for i in 0..6 {
-        inspect_sign(Sign::Stop(i));
-    }
-    inspect_sign(Sign::SpeedLimit(10, String::from("City")));
-    inspect_sign(Sign::SpeedLimit(30, String::from("City")));
-    inspect_sign(Sign::SpeedLimit(50, String::from("City")));
-    inspect_sign(Sign::SpeedLimit(130, String::from("Highway")));
-    inspect_sign(Sign::SpeedLimit(110, String::from("Highway with rain")));
-    inspect_sign(Sign::Overtake(true));
-    inspect_sign(Sign::Overtake(false));
-    
-}
+use citylib::city::*;
 
 fn play_with_cities() {
     let city = City{ 
@@ -180,28 +141,6 @@ fn play_with_vec_big() {
     println!("{:?}", &big_vec[big_vec.len()-10..])
 }
 
-fn play_with_traffic_lights(){
-    println!("***** Fast and Furious *****");
-    let mut lights: Vec<TrafficLight> = Vec::new();
-    for _ in 0..10 {
-        lights.push(TrafficLight::Green);
-    }
-    lights.push(TrafficLight::Orange);
-    lights.push(TrafficLight::Red);
-    lights.push(TrafficLight::Green);
-
-    let mut i = 0;
-    // NB: can panic
-    while let TrafficLight::Green = lights[i] {
-        println!("Go");
-        // inspect_traffic_light(lights[i]); // need copy trait
-        i += 1;
-    }
-    println!("Stop because light is {:?}", lights[i]);
-    println!()
-}
-
-
 // borrow without returning
 fn borrow_city(city: City){
     println!("I borrow city: {city}")
@@ -237,16 +176,10 @@ fn play_with_borrow(){
 }
 
 fn main() {
-    play_with_traffic_light();
-    play_with_signs();
     play_with_cities();
     play_with_city_methods();
     play_with_city_traits();
     play_with_vec_cities();
     // play_with_vec_big()
-    play_with_traffic_lights();
     play_with_borrow();
-    play_with_linked_list();
-    play_with_btreeset();
-    play_with_cities_index();
 }
