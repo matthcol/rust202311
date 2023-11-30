@@ -31,3 +31,9 @@ cargo build -r
 ```
 cargo clean
 ```
+
+### Update dependency with lib in development
+Refresh git reference to last commit
+```
+cargo update
+```

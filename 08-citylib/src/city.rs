@@ -13,7 +13,7 @@ pub struct City {
 impl Display for City {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_fmt(
-            format_args!("{} (pop = {} ; speed limit = {})", self.name, self.population, self.average_speed_limit)
+            format_args!("{} (population = {} ; speed limit = {})", self.name, self.population, self.average_speed_limit)
         )
     }
 }

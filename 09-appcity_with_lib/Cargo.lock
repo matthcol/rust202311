@@ -12,3 +12,4 @@ dependencies = [
 [[package]]
 name = "citylib"
 version = "0.1.0"
+source = "git+https://github.com/matthcol/citylib#810e22364c3a53f32329bc875305ebe3d8b64729"
